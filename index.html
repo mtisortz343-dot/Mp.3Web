@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Mp.3 Web</title>
+
+<style>
+
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+
+    background:url("https://i.postimg.cc/yYzkG3V2/En-Progreso-(Img).jpg")
+    no-repeat center center fixed;
+
+    background-size:cover;
+
+    color:white;
+}
+
+/* ========================= */
+/* CONTENEDOR GENERAL */
+/* ========================= */
+
+.contenedor{
+    display:flex;
+    min-height:100vh;
+}
+
+/* ========================= */
+/* MENÚ LATERAL */
+/* ========================= */
+
+.menu{
+
+    width:250px;
+
+    background:rgba(0,0,0,0.65);
+
+    backdrop-filter:blur(6px);
+
+    padding:20px;
+
+    box-shadow:2px 0 15px rgba(0,0,0,0.5);
+}
+
+.menu h2{
+
+    text-align:center;
+
+    margin-bottom:25px;
+
+    text-shadow:0 0 10px black;
+}
+
+.menu a{
+
+    display:block;
+
+    text-decoration:none;
+
+    color:white;
+
+    background:rgba(0,0,0,0.5);
+
+    padding:12px;
+
+    margin-bottom:12px;
+
+    border-radius:10px;
+
+    transition:0.3s;
+}
+
+.menu a:hover{
+
+    background:rgba(255,255,255,0.15);
+
+    transform:translateX(5px);
+}
+
+/* ========================= */
+/* CONTENIDO */
+/* ========================= */
+
+.contenido{
+
+    flex:1;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:30px;
+}
+
+.texto{
+
+    max-width:700px;
+
+    background:rgba(0,0,0,0.65);
+
+    backdrop-filter:blur(6px);
+
+    padding:30px;
+
+    border-radius:20px;
+
+    text-align:center;
+}
+
+.texto h1{
+
+    margin-top:0;
+
+    font-size:3em;
+
+    text-shadow:0 0 10px black;
+}
+
+.texto p{
+
+    line-height:1.6;
+
+    font-size:1.1em;
+}
+
+/* ========================= */
+/* RESPONSIVE */
+/* ========================= */
+
+@media(max-width:768px){
+
+    .contenedor{
+        flex-direction:column;
+    }
+
+    .menu{
+
+        width:100%;
+
+        display:flex;
+
+        flex-wrap:wrap;
+
+        justify-content:center;
+    }
+
+    .menu h2{
+        width:100%;
+    }
+
+    .menu a{
+        width:200px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="contenedor">
+
+    <div class="menu">
+
+        <h2>Mp.3 Web</h2>
+
+        <a href="aventura_01.html">🌄 Primera aventura</a>
+
+        <a href="aventura_02.html">🏙️ Segunda aventura</a>
+
+        <a href="aventura_03.html">🌙 Tercera aventura</a>
+
+    </div>
+
+    <div class="contenido">
+
+        <div class="texto">
+
+            <h1>Mp.3 Web</h1>
+
+            <p>
+                Un archivo digital donde guardamos nuestras
+                aventuras, fotografías, recuerdos y momentos.
+            </p>
+
+            <p>
+                Selecciona una aventura desde el menú lateral
+                para comenzar a explorar.
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
