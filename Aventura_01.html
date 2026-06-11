@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Nombre de la Aventura</title>
+
+<style>
+
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:url("https://i.postimg.cc/yYzkG3V2/En-Progreso-(Img).jpg") no-repeat center center fixed;
+    background-size:cover;
+    color:white;
+}
+
+/* BOTÓN INICIO */
+
+.boton-home{
+    position:fixed;
+    top:20px;
+    left:20px;
+    padding:12px 18px;
+    background:rgba(0,0,0,0.7);
+    color:white;
+    text-decoration:none;
+    border-radius:10px;
+    z-index:1000;
+}
+
+.boton-home:hover{
+    background:rgba(0,0,0,0.9);
+}
+
+/* CONTENIDO */
+
+.contenedor{
+    max-width:1200px;
+    margin:auto;
+    padding:80px 25px 50px;
+}
+
+.titulo{
+    text-align:center;
+    font-size:3em;
+    margin-bottom:25px;
+    text-shadow:0 0 15px black;
+}
+
+.resumen{
+    background:rgba(0,0,0,0.7);
+    padding:25px;
+    border-radius:20px;
+    margin-bottom:35px;
+    text-align:center;
+}
+
+/* GALERÍA */
+
+.galeria{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:15px;
+}
+
+.galeria img{
+    width:100%;
+    height:250px;
+    object-fit:cover;
+    border-radius:15px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.galeria img:hover{
+    transform:scale(1.03);
+}
+
+/* LIGHTBOX */
+
+.lightbox{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.95);
+    z-index:9999;
+}
+
+.lightbox.activo{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.lightbox img{
+    max-width:85%;
+    max-height:80%;
+    border-radius:10px;
+}
+
+.cerrar{
+    position:absolute;
+    top:20px;
+    right:30px;
+    font-size:50px;
+    cursor:pointer;
+    user-select:none;
+}
+
+.flecha{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    font-size:60px;
+    cursor:pointer;
+    user-select:none;
+    padding:20px;
+}
+
+.izquierda{
+    left:20px;
+}
+
+.derecha{
+    right:20px;
+}
+
+.descripcion{
+    position:absolute;
+    bottom:25px;
+    left:50%;
+    transform:translateX(-50%);
+    background:rgba(0,0,0,0.75);
+    padding:15px 25px;
+    border-radius:15px;
+    max-width:800px;
+    text-align:center;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<a href="index.html" class="boton-home">🏠 Inicio</a>
+
+<div class="contenedor">
+
+```
+<h1 class="titulo">
+    [-Ingresar Texto-]
+</h1>
+
+<div class="resumen">
+    [-Ingresar Texto-]
+</div>
+
+<div class="galeria">
+
+    <img src="https://i.postimg.cc/yYzkG3V2/En-Progreso-(Img).jpg" onclick="abrir(0)">
+    <img src="https://i.postimg.cc/yN4VSkkj/Proximamente-Img.jpg" onclick="abrir(1)">
+    <img src="https://i.postimg.cc/yYzkG3V2/En-Progreso-(Img).jpg" onclick="abrir(2)">
+    <img src="https://i.postimg.cc/yN4VSkkj/Proximamente-Img.jpg" onclick="abrir(3)">
+    <img src="https://i.postimg.cc/yYzkG3V2/En-Progreso-(Img).jpg" onclick="abrir(4)">
+    <img src="https://i.postimg.cc/yYzkG3V2/En-Progreso-(Img).jpg" onclick="abrir(5)">
+
+</div>
+```
+
+</div>
+
+<div class="lightbox" id="lightbox">
+
+```
+<span class="cerrar" onclick="cerrar()">×</span>
+
+<div class="flecha izquierda" onclick="anterior()">❮</div>
+
+<img id="imagenGrande">
+
+<div class="flecha derecha" onclick="siguiente()">❯</div>
+
+<div class="descripcion" id="descripcion">
+</div>
+```
+
+</div>
+
+<script>
+
+const imagenes = [
+
+{
+    src:"https://i.postimg.cc/yYzkG3V2/En-Progreso-(Img).jpg",
+    texto:"[-Ingresar Texto-]"
+},
+
+{
+    src:"https://i.postimg.cc/yN4VSkkj/Proximamente-Img.jpg",
+    texto:"[-Ingresar Texto-]"
+},
+
+{
+    src:"https://i.postimg.cc/yYzkG3V2/En-Progreso-(Img).jpg",
+    texto:"[-Ingresar Texto-]"
+},
+
+{
+    src:"https://i.postimg.cc/yN4VSkkj/Proximamente-Img.jpg",
+    texto:"[-Ingresar Texto-]"
+},
+
+{
+    src:"https://i.postimg.cc/yYzkG3V2/En-Progreso-(Img).jpg",
+    texto:"[-Ingresar Texto-]"
+},
+
+{
+    src:"https://i.postimg.cc/yYzkG3V2/En-Progreso-(Img).jpg",
+    texto:"[-Ingresar Texto-]"
+}
+
+];
+
+let actual = 0;
+
+function abrir(i){
+
+    actual = i;
+
+    document.getElementById("lightbox").classList.add("activo");
+
+    actualizar();
+}
+
+function cerrar(){
+
+    document.getElementById("lightbox").classList.remove("activo");
+}
+
+function actualizar(){
+
+    document.getElementById("imagenGrande").src =
+    imagenes[actual].src;
+
+    document.getElementById("descripcion").innerText =
+    imagenes[actual].texto;
+}
+
+function siguiente(){
+
+    actual++;
+
+    if(actual >= imagenes.length){
+        actual = 0;
+    }
+
+    actualizar();
+}
+
+function anterior(){
+
+    actual--;
+
+    if(actual < 0){
+        actual = imagenes.length - 1;
+    }
+
+    actualizar();
+}
+
+document.addEventListener("keydown", function(e){
+
+    const visor =
+    document.getElementById("lightbox");
+
+    if(!visor.classList.contains("activo"))
+        return;
+
+    if(e.key === "ArrowRight"){
+        siguiente();
+    }
+
+    if(e.key === "ArrowLeft"){
+        anterior();
+    }
+
+    if(e.key === "Escape"){
+        cerrar();
+    }
+
+});
+
+</script>
+
+</body>
+</html>
